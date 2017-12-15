@@ -4,6 +4,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
+declare var window;
+
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -16,6 +19,20 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+
+    window["ApiAIPlugin"].init(
+        {
+            clientAccessToken: "dd82a8673d0d43d1afa4bf69baebea6e", // insert your client access key here 
+            lang: "en" // set lang tag from list of supported languages 
+        }, 
+        function(result) { 
+          alert(result);
+          /* success processing */ },
+
+        function(error) {
+          alert(error);
+           /* error processing */ }
+    );
     });
   }
 }
